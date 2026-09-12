@@ -44,8 +44,13 @@ class DB{
             
             String sql = "Update demo set marks = ? where id = ?;";
             PreparedStatement ps = con.prepareStatement(sql);
-            ps.setInt(1, 55);
-            ps.setInt(2, 7);
+            
+            System.out.println("Enter id: ");
+            int id = sc.nextInt();
+            System.out.println("Enter marks: ");
+            int mark = sc.nextInt();
+            ps.setInt(1, mark);
+            ps.setInt(2, id);
             ps.executeUpdate();
 
 
@@ -61,9 +66,9 @@ class Main{
         
         
         Connection con = DB.getConnection();
-        if(con != null){
-            System.out.println("Connected");
-        }
+//        if(con != null){
+//            System.out.println("Connected");
+//        }
         try{
             con.close();
         }catch(Exception e){
