@@ -3,10 +3,10 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 
 
-public class DB {
+class DB {
 
-      public static void main(String[] args) {
-        Connection con;
+      public static Connection getConnection(){
+        Connection con = null;
 
         try{
             con = DriverManager.getConnection(
@@ -14,10 +14,18 @@ public class DB {
                 "postgres",
                 "kp724"
             );
-            System.out.println("Database Connected!");
+            
         }catch(Exception e){
             e.printStackTrace();
         }
-
+        return con;
+    }
+}
+class main{
+    public static void main(String[] args) {
+        Connection Conn = DB.getConnection();
+        if(Conn != null){
+            System.out.println("Connected");
+        }
     }
 }
