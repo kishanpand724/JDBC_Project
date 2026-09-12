@@ -25,22 +25,20 @@ class DB{
 //            ps.setInt(3, 46);
 //            ps.executeUpdate();
 //            ps.close();
-              
 
-              PreparedStatement ps = con.prepareStatement("select * from demo where id = ?");
-              
-              System.out.println("Enter Id: ");
-              int inputId = sc.nextInt();
-              
-              ps.setInt(1, inputId);
-              ResultSet rs = ps.executeQuery();
-              
-              while(rs.next()){
-                    System.out.println(rs.getInt(1));
-                    System.out.println(rs.getString(2));
-                    System.out.println(rs.getInt(3));
-              }
-              ps.close();
+    
+            System.out.println("Enter Id: ");
+            int inputId = sc.nextInt();
+
+            PreparedStatement ps = con.prepareStatement("select * from demo where id = " +inputId );
+            ResultSet rs = ps.executeQuery();
+
+            while(rs.next()){
+                  System.out.println(rs.getInt(1));
+                  System.out.println(rs.getString(2));
+                  System.out.println(rs.getInt(3));
+            }
+            ps.close();
               
               
 
