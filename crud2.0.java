@@ -33,10 +33,16 @@ class crud {
             int cid = sc.nextInt();
             ps.setInt(1, cid);
             ResultSet rs = ps.executeQuery();
+            
+            
             if(rs.next()){
                 System.out.println("User Id exists...");
+                rs.close();
+                ps.close();
             }
-            else{              
+            else{      
+                rs.close();
+                ps.close();
                 ps = cd.prepareStatement("insert into demo values(?,?,?)");
 //                System.out.println("Enter Id: ");
 //                int id = sc.nextInt();
@@ -66,12 +72,12 @@ class crud {
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
             if(rs.next()){
-                while(rs.next()){
-                    System.out.println(rs.getInt(1));
-                    System.out.println(rs.getString(2));
-                    System.out.println(rs.getInt(3));
+                
+                System.out.println(rs.getInt(1));
+                System.out.println(rs.getString(2));
+                System.out.println(rs.getInt(3));
 
-                }
+                
             }
             else{
                 System.out.println("Id not exits");
@@ -98,7 +104,7 @@ class crud {
             if(status > 0)
                 System.out.println("updtaed");
             else
-                System.out.println("Not executed");
+                System.out.println("id not found");
             ps.close();       
         }catch(Exception e){
             e.printStackTrace();
@@ -117,7 +123,7 @@ class crud {
             if(status > 0)
                 System.out.println("Deleted");
             else
-                System.out.println("Not executed");
+                System.out.println("id not found");
             ps.close();       
         }catch(Exception e){
             e.printStackTrace();
