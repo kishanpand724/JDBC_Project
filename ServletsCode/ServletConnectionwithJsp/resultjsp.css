@@ -1,0 +1,27 @@
+
+*{
+    background-color: Red;
+    margin: 0px;
+    padding: 0px;
+}
+
+.result_box{
+    color: white;
+    border: 1px solid green;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.wlcmsg{
+    color: wheat;
+    font-size: 25px;
+    font-family: sans-serif;
+    font-weight: bold;
+    
+}
+
+data {
+    font-size: 20px;
+    font-family: serif;
+}
