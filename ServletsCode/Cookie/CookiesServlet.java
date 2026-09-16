@@ -1,40 +1,35 @@
 package com.cookiesservlet;
 
+import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class CookiesServlet extends HttpServlet{
-    public void service(HttpServletRequest req, HttpServletResponse res){
-        try{
-            String name = req.getParameter("name");
-            boolean userVisit = false;
-            Cookie[] cookiesarr = req.getCookies();
-            PrintWriter out = res.getWriter();
-            if(cookiesarr != null){
-                for(int i=0;i<cookiesarr.length;i++){
-                    Cookie c = cookiesarr[i];
-                    String naam = c.getName();
-                    String val = c.getValue();
-                    if(naam.equals("Keyname") && val.equals("Value12")){
-                        out.print("Welcome back " + name);
-                        userVisit = true;
-                        break;
-                    }
-                    
+public class NewCookie extends HttpServlet{
+    public void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException{
+        String name = req.getParameter("name");
+        String name1 = req.getParameter("name1");
+        PrintWriter out = res.getWriter();
+        boolean eixts = false;
+        Cookie[] cook = req.getCookies();
+        if(cook != null){
+            for(int i=0;i<cook.length;i++){
+                Cookie c = cook[i];
+                String n = c.getName();
+                String v = c.getValue();
+                if(n.equals(name1) && v.equals(name)){
+                    out.print("Welcome back " +name);
+                    eixts = true;
+                    break;
                 }
             }
-            if(userVisit == false){
-                out.print("Welcome " + name);
-                Cookie c1 = new Cookie("Keyname","Value12");
-                res.addCookie(c1);
-            }
-            
-           
-        }catch(Exception e){
-            e.printStackTrace();
+        }
+        if(eixts == false){
+            out.print("Welcome "+name);
+            Cookie c1 = new Cookie(name1, name);
+            res.addCookie(c1);
         }
     }
 }
